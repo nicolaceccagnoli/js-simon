@@ -10,7 +10,6 @@
 
 /* 
     GENERAL
-    
 */
 
 html{
@@ -20,4 +19,28 @@ html{
 .container{
     margin: 0 auto;
     max-width: 1200px;
+}
+
+/* 
+    REPONSIVE
+*/
+
+/* Mobile Piccolo */
+@media screen and (min-width: 48px) {
+
+}
+
+/* Mobile Grande */
+@media screen and (min-width: 576px) {
+
+}
+
+/* Tablet */
+@media screen and (min-width: 768px) {
+
+}
+
+/* Desktop */
+@media screen and (min-width: 992px) {
+    
 }
