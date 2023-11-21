@@ -1,3 +1,9 @@
+/*  
+   LINK AI CSS
+*/
+@import url(media.css);
+@import url(12bool.css);
+
 /* 
     RESET
 */
@@ -9,33 +15,17 @@
 }
 
 /* 
+    CONTAINER
+*/
+.container {
+    max-width: 1170px;
+    margin: 0 auto;
+}
+
+/* 
     GENERAL
 */
 
 html{
     font-family: Arial, Helvetica, sans-serif;
-}
-
-/* 
-    REPONSIVE
-*/
-
-/* Mobile Piccolo */
-@media screen and (min-width: 48px) {
-
-}
-
-/* Mobile Grande */
-@media screen and (min-width: 576px) {
-
-}
-
-/* Tablet */
-@media screen and (min-width: 768px) {
-
-}
-
-/* Desktop */
-@media screen and (min-width: 992px) {
-    
 }
