@@ -8,11 +8,38 @@
 
 */
 
-// Creo un ciclo che generi 5 numeri casuali 
-for (i = 1; i <= 5; i++) {
-    // Creo una Variabile che rappresenti i 5 numeri casuali
-    let pcNumbers = randomNumbers(100, 1);
-    console.log('Numeri del PC', pcNumbers, typeof pcNumbers);
+// Creo un Array nei quali inserirò i numeri estratti
+const randomNumbersArray = [];
+console.log('randomNumbersArray', randomNumbersArray, typeof randomNumbersArray);
+
+// Creo una Variabile che intrappoli la Funzione per la generazione dei numeri casuali
+let randomPcNumbers = numberGenarator(100, 1, randomNumbersArray);
+
+// Creo una Funzione che gestisca l'inserimento dei numeri nell'array che li conterrà
+function numberGenarator  (max, min, array) {
+    // Creo un ciclo che generi 5 numeri casuali 
+    for (i = 1; i <= 5; i++) {
+
+        // Creo una Variabile che rappresenti i numeri casuali del PC e ci inserisco la Funzione
+        let numbers = randomNumbers(max, min);
+        console.log('Numeri del PC', numbers, typeof numbers);
+
+        // Creo una Variabile che controlli che non venga estratto più volte lo stesso numero
+        let foundInArray = array.includes(numbers);
+        console.log('foundInArray', foundInArray, typeof foundInArray); 
+
+        //  Creo un ciclo che controlli che i numeri inseriti nell'Array siano sempre diversi 
+        while (foundInArray == true) {
+            numbers = randomNumbers(max, min);
+            console.log(numbers);
+
+            foundInArray = array.includes(numbers);
+        }
+
+
+        // Pusho i numeri dentro l'array
+        array.push(numbers);
+    }
 }
 
 // Creo una Funzione che generi numeri casuali
