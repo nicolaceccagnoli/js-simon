@@ -1,8 +1,8 @@
 /*
 
     1) Visualizzare in pagina 5 numeri casuali; OK
-        -- Parte un Timer di 30 secondi
-    2) Dopo 30 secondi i numeri scompaiono
+        -- Parte un Timer di 30 secondi OK
+    2) Dopo 30 secondi i numeri scompaiono OK
         -- l'utente deve inserire, uno alla volta, i numeri che ha visto precedentemente, tramite il prompt()
     3) Dopo che sono stati inseriti i 5 numeri, il software dice quanti e quali dei numeri da indovinare sono stati individuati.
 
@@ -12,11 +12,16 @@
 const randomNumbersArray = [];
 console.log('randomNumbersArray', randomNumbersArray, typeof randomNumbersArray);
 
+// Creo un Array che contenga i numeri inseriti dall'utente
+let userNumbersArray = [];
+
+
 // Creo una Variabile che prenda dall'HTML il contenitore dei Numeri del PC
 const pcNumbers = document.querySelector('#pc-numbers');
 
 // Creo una Variabile che intrappoli la Funzione per la generazione dei numeri casuali
 let randomPcNumbers = numberGenarator(100, 1, randomNumbersArray, pcNumbers);
+
 
 // Creo una Funzione che gestisca l'inserimento dei numeri nell'array che li conterrà
 function numberGenarator (max, min, array, div) {
@@ -59,8 +64,10 @@ function numberGenarator (max, min, array, div) {
 // Imposto un Timer che dopo 30 secondi svuoti la pagina
 setTimeout (function() {
     pcNumbers.innerHTML = '';
-    console.log('Ora il contenitore si svuota')
-}, 30000); 
+    pcNumbers.classList.remove('p-5', 'text-danger', 'bg-dark', 'fs-2','border', 'rounded');
+    console.log('Ora il contenitore si svuota');
+
+}, 5000); 
 
 // Creo una Funzione che generi numeri casuali
 function randomNumbers (max, min) {
@@ -68,3 +75,27 @@ function randomNumbers (max, min) {
     
     return randNum;
 }
+
+// Imposto un Timer che dopo 35 secondi faccia apparire i prompt all'utente
+setTimeout (function() {
+
+    // Creo un Ciclo che crei 5 prompt per l'Utente dove dovrà inserire i numeri che ha appena visto 
+    for (j = 1; j <= 5; j++) {
+
+        // Creo un prompt che chieda all'utente di inserire i numeri che ha visto
+        let userInput = prompt('Inserisci i numeri che hai appena visto: ');
+        console.log ("Numeri dell'utente: ", userInput, typeof userInput);
+
+        // Converto l'input dell'utente in numeri
+        let userNumbers = parseInt(userInput);
+        console.log("Il tipo di input dello utente é: ",userNumbers, typeof userNumbers);
+
+        userNumbersArray.push(userNumbers);
+        console.log("Array dei numeri dell'utente: ", userNumbersArray, typeof userNumbersArray);
+
+    }
+
+}, 8000); 
+
+
+
