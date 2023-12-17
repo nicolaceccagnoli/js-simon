@@ -1,6 +1,6 @@
 /*
 
-    1) Visualizzare in pagina 5 numeri casuali;
+    1) Visualizzare in pagina 5 numeri casuali; OK
         -- Parte un Timer di 30 secondi
     2) Dopo 30 secondi i numeri scompaiono
         -- l'utente deve inserire, uno alla volta, i numeri che ha visto precedentemente, tramite il prompt()
@@ -55,6 +55,12 @@ function numberGenarator (max, min, array, div) {
 
     }
 }
+
+// Imposto un Timer che dopo 30 secondi svuoti la pagina
+setTimeout (function() {
+    pcNumbers.innerHTML = '';
+    console.log('Ora il contenitore si svuota')
+}, 30000); 
 
 // Creo una Funzione che generi numeri casuali
 function randomNumbers (max, min) {
