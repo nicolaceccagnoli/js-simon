@@ -111,8 +111,15 @@ function compareArrays (a, b, container) {
     //     console.log('I 2 array non hanno la stessa lunghezza');
     //     return alert('Devi inserire un minimo di 5 numeri');
     // } else {
+
+        // Inserisco una regola che controlli che gli elementi contenuti dei 2 array possano avere ordine diverso
+        // .sort() ordina automaticamente gli elementi di un array, in ordine alfabetico o come in questo caso posiziona i numeri in ordine crescente
+        a.sort();
+        b.sort();
+
         // Creo un ciclo che scorra gli elementi di ogni array e li confronti
         for (let n = 1; n <= 5; n++) {
+
             // Stabilisco una condizione per cui gli elemtni dell'array debbano essere gli stessi
             if (a[n] !== b[n]) {
                 console.log('I 2 array non hanno gli stessi Numeri');
