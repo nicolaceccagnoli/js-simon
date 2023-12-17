@@ -8,25 +8,38 @@
 
 */
 
-// Creo un Array nei quali inserirò i numeri estratti
+// Dichiaro un Array nei quali inserirò i numeri estratti
 const randomNumbersArray = [];
 console.log('randomNumbersArray', randomNumbersArray, typeof randomNumbersArray);
 
-// Creo un Array che contenga i numeri inseriti dall'utente
+// Dichiaro un Array che contenga i numeri inseriti dall'utente
 let userNumbersArray = [];
 console.log("Array dei numeri dell'utente: ", userNumbersArray, typeof userNumbersArray);
 
-// Creo una Variabile che prenda dall'HTML il contenitore dei Numeri del PC
+// Dichiaro una Variabile che prenda dall'HTML il contenitore dei Numeri del PC
 const pcNumbers = document.querySelector('#pc-numbers');
 
-// Creo una Variabile che prenda dall'HTML il contenitore del Risultato
+// Dichiaro una Variabile che prenda dall'HTML il contenitore del Risultato
 const resultContainer = document.querySelector('#result-container');
 
 // Aggiungo dello stile al Container del Risultato
 resultContainer.classList.add('d-flex', 'justify-content-center', 'mt-3');
 
-// Creo una Variabile che intrappoli la Funzione per la generazione dei numeri casuali
+// Dichiaro una Variabile che prenda dall'HTML il contenitore del Timer
+const timerContainer = document.querySelector('#timer-container');
+
+// Aggiungo dello stile al Contenitore del Timer
+timerContainer.classList.add('h2', 'mb-3');
+
+// Setto l'intervallo di tempo per cui debba scorrere il Timer
+let timerId = setInterval(countdown, 1000);
+
+// Dichiato una Variabile per il Countdown del Timer
+let timeCountdown = 30; 
+
+// Dichiaro una Variabile che intrappoli la Funzione per la generazione dei numeri casuali
 let randomPcNumbers = numberGenarator(100, 1, randomNumbersArray, pcNumbers);
+
 
 // Imposto un Timer che dopo 30 secondi svuoti la pagina
 setTimeout (function() {
@@ -34,26 +47,33 @@ setTimeout (function() {
     pcNumbers.classList.remove('p-5', 'text-danger', 'bg-dark', 'fs-2','border', 'rounded');
     console.log('Ora il contenitore si svuota');
 
-}, 5000); 
+
+}, 30000); 
+
 
 // Imposto un Timer che dopo 35 secondi faccia apparire i prompt all'utente
 setTimeout (function() {
 
+        for (let j = 1; j <= 5; j++) {
+
+            // Creo un prompt che chieda all'utente di inserire i numeri che ha visto
+            let userInput = prompt('Inserisci i numeri che hai appena visto: ');
+    
+            if (userInput !== NaN) {
+                // Converto l'input dell'utente in numeri
+                let userNumbers = parseInt(userInput);
+    
+                userNumbersArray.push(userNumbers);
+    
+            }
+    
+        }
+            
     // Creo un Ciclo che crei 5 prompt per l'Utente dove dovrà inserire i numeri che ha appena visto 
-    for (let j = 1; j <= 5; j++) {
-
-        // Creo un prompt che chieda all'utente di inserire i numeri che ha visto
-        let userInput = prompt('Inserisci i numeri che hai appena visto: ');
-
-        // Converto l'input dell'utente in numeri
-        let userNumbers = parseInt(userInput);
-
-        userNumbersArray.push(userNumbers);
-    }
 
     let result = compareArrays(randomNumbersArray, userNumbersArray, resultContainer);
     
-}, 8000); 
+}, 35000); 
 
 
 
@@ -147,5 +167,18 @@ function compareArrays (a, b, container) {
         // }
     }
 
+
+}
+
+
+// Creo una Funzione per far scorrere il Timer all'indietro
+function countdown () {
+    if (timeCountdown == -1) {
+        clearTimeout(timerId);
+        timerContainer.innerHTML = '';
+    } else {
+        timerContainer.innerHTML = `Ti rimangono ${timeCountdown} secondi per memorizzare i numeri`;
+        timeCountdown--;
+    }
 
 }
