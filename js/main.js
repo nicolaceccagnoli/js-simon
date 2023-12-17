@@ -19,6 +19,12 @@ console.log("Array dei numeri dell'utente: ", userNumbersArray, typeof userNumbe
 // Creo una Variabile che prenda dall'HTML il contenitore dei Numeri del PC
 const pcNumbers = document.querySelector('#pc-numbers');
 
+// Creo una Variabile che prenda dall'HTML il contenitore del Risultato
+const resultContainer = document.querySelector('#result-container');
+
+// Aggiungo dello stile al Container del Risultato
+resultContainer.classList.add('d-flex', 'justify-content-center', 'mt-3');
+
 // Creo una Variabile che intrappoli la Funzione per la generazione dei numeri casuali
 let randomPcNumbers = numberGenarator(100, 1, randomNumbersArray, pcNumbers);
 
@@ -45,7 +51,7 @@ setTimeout (function() {
         userNumbersArray.push(userNumbers);
     }
 
-    let result = compareArrays(randomNumbersArray, userNumbersArray);
+    let result = compareArrays(randomNumbersArray, userNumbersArray, resultContainer);
     
 }, 8000); 
 
@@ -98,23 +104,41 @@ function numberGenarator (max, min, array, div) {
 
 
 // Creo una Funzione per comparare i valori dei 2 array
-function compareArrays (a, b) {
+function compareArrays (a, b, container) {
     
     // Stabilisco delle condizioni per cui le lunghezze dei 2 Array debbano essere uguali
-    if (a.length !== b.length) {
-        console.log('I 2 array non hanno la stessa lunghezza');
-        return alert('Devi inserire un minimo di 5 numeri');
-    } else {
+    // if (a.length !== b.length) {
+    //     console.log('I 2 array non hanno la stessa lunghezza');
+    //     return alert('Devi inserire un minimo di 5 numeri');
+    // } else {
         // Creo un ciclo che scorra gli elementi di ogni array e li confronti
         for (let n = 1; n <= 5; n++) {
             // Stabilisco una condizione per cui gli elemtni dell'array debbano essere gli stessi
             if (a[n] !== b[n]) {
                 console.log('I 2 array non hanno gli stessi Numeri');
-                return alert('Hai perso!');
+                return container.innerHTML = `
+
+                <div class="card text-center mb-3" style="width: 18rem;">
+                    <div class="card-body bg-warning">
+                        <p class="card-text fs-3">
+                            Hai perso! Non hai inserito gli stessi numeri.
+                        </p>
+                    </div>
+                </div> `
             } 
             console.log('I 2 array hanno gli stessi Numeri');
-            return alert('Bravissimo! Hai indovinato tutti i numeri.');
-        }
+            return container.innerHTML = `
+
+            <div class="card text-center mb-3" style="width: 18rem;">
+                <div class="card-body bg-success">
+                    <p class="card-text fs-3">
+                        Bravissimo! Hai indovinato tutti i numeri.
+                    </p>
+                </div>
+            </div> `
+        
+        // }
     }
+
 
 }
